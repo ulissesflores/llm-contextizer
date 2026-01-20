@@ -14,7 +14,7 @@ import os
 import sys
 import argparse
 from pathlib import Path
-from typing import Set, List, Optional
+from typing import Set, Optional, Union
 
 # --- Constants & Defaults ---
 
@@ -49,18 +49,25 @@ class ContextGenerator:
     a consolidated text representation.
     """
 
-    def __init__(self, root_dir: Path):
+    def __init__(self, root_dir: Path, output_path: Optional[Path] = None):
         """
         Initialize the generator with a root directory.
 
         Args:
             root_dir (Path): The root directory of the project to scan.
+            output_path (Path, optional): Absolute path to the output file when stdout is redirected.
+                When provided and the file is within the scanned root, it will be excluded to prevent
+                self-inclusion and unbounded growth.
         """
         self.root: Path = root_dir.resolve()
         self.ignore_dirs: Set[str] = DEFAULT_IGNORE_DIRS.copy()
         self.ignore_files: Set[str] = DEFAULT_IGNORE_FILES.copy()
         self.ignore_ext: Set[str] = DEFAULT_IGNORE_EXT.copy()
         
+        # When output is redirected to a file inside the scanned root, exclude it to prevent
+        # self-inclusion (e.g., `... > relatorio.txt`) and exponential growth across runs.
+        self.output_path: Optional[Path] = output_path.resolve() if output_path else None
+
         self._load_config()
 
     def _load_config(self) -> None:
@@ -103,6 +110,28 @@ class ContextGenerator:
             bool: True if the path should be ignored, False otherwise.
         """
         name = path.name
+
+        # Safety: if stdout is redirected to a file that lives inside the target root, do not
+        # include that file in the scan/output (prevents self-inclusion).
+        if self.output_path:
+            try:
+                resolved = path.resolve()
+            except OSError:
+                return True
+
+            if resolved == self.output_path:
+                return True
+
+            # If the output file is inside the scanned root, also exclude it even if reached
+            # via relative/alternate paths.
+            try:
+                resolved.relative_to(self.root)
+                self.output_path.relative_to(self.root)
+            except ValueError:
+                pass
+            else:
+                if resolved == self.output_path:
+                    return True
 
         # Always verify if the path exists to avoid errors on broken symlinks
         if not path.exists():
@@ -241,7 +270,18 @@ def main() -> None:
         sys.stderr.write(f"Error: The directory '{target_path}' does not exist.\n")
         sys.exit(1)
 
-    generator = ContextGenerator(target_path)
+    output_path: Optional[Path] = None
+
+    # If stdout is redirected (e.g., `> relatorio.txt`), attempt to detect the target file so we can
+    # exclude it from the scan. This prevents the output file from being included in itself.
+    if not sys.stdout.isatty():
+        try:
+            # `sys.stdout.name` is typically the path when redirected to a file.
+            output_path = Path(os.path.realpath(getattr(sys.stdout, 'name', '')))
+        except Exception:
+            output_path = None
+
+    generator = ContextGenerator(target_path, output_path=output_path)
 
     print("PROJECT STRUCTURE:")
     print("==================")
