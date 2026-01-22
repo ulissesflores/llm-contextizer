@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it."
+title: "LLM Contextizer"
+type: software
+version: 0.1.1
+date-released: 2026-01-22
+authors:
+  - family-names: Flores
+    given-names: Carlos Ulisses
+    affiliation: "Codex Hash Ltda. (Brazil)"
+    orcid: "https://orcid.org/0000-0002-6034-7765"
+repository-code: "https://github.com/ulissesflores/llm-contextizer"
+license: Apache-2.0
+abstract: >
+  Zero-dependency CLI that generates an LLM-optimized text context from a codebase
+  by emitting an ASCII directory tree followed by concatenated file contents, with
+  sensible defaults for noise filtering, truncation of log-like files, and output
+  self-inclusion safety when redirecting stdout.
+keywords:
+  - LLM tooling
+  - Context windows
+  - CLI
+  - Prompt engineering
+  - Codebase summarization

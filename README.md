@@ -138,8 +138,8 @@ Create a .llmignore file at the project root you are scanning.
 
 Example:
 
-```txt
 
+```txt
 # directories (by name)
 dist/
 build/
@@ -157,8 +157,8 @@ __pycache__/
 *.csv
 *.tsv
 *.jsonl
-
 ```
+
 
 Tip: the repository includes a ready-to-copy template: .llmignore.example.
 

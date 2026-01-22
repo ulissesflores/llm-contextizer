@@ -15,3 +15,10 @@ The format is based on *Keep a Changelog*, and this project adheres to *Semantic
 - Truncation for large/log-like files.
 - Output safety: prevent self-inclusion when redirecting stdout to a file within the scanned root.
 - ADRs for core architectural decisions.
+
+## [0.1.1] - 2026-01-22
+### Added
+- Citable metadata files (CITATION.cff, codemeta.json, .zenodo.json) for scholarly citation and archival workflows.
+
+### Changed
+- No runtime behavior changes; this release is documentation/metadata only.
