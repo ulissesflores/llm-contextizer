@@ -24,6 +24,15 @@ The format is based on *Keep a Changelog*, and this project adheres to *Semantic
 ### Added
 - Explicit reference to the Zenodo-minted DOI for the v0.1.1 archival release.
 - Updated citation and metadata files to support formal academic referencing.
-
+  
+## [0.1.3] - 2026-01-22
 ### Changed
+- Improved DOI/citation metadata for better compatibility with indexers (CITATION.cff, codemeta.json).
 - No runtime, behavioral, or algorithmic changes.
+
+## [0.1.4] - 2026-01-22
+### Changed
+- Aligned metadata version fields with the Git tag (CITATION.cff, codemeta.json).
+- Clarified Zenodo DOI as the canonical archival citation target via `preferred-citation`.
+- No runtime, behavioral, or algorithmic changes.
+  

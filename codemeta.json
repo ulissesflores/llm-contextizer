@@ -11,7 +11,7 @@
     "https://github.com/ulissesflores/llm-contextizer"
   ],
   "license": "https://spdx.org/licenses/Apache-2.0",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "author": [
     {
       "@type": "Person",

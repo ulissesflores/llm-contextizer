@@ -201,8 +201,7 @@ Contributions are welcome.
 
 ## Citation
 
-If you use this software in academic or research contexts, please cite the
-archival version hosted on Zenodo:
+If you use this software in academic or research contexts, please cite the Zenodo archival release (immutable snapshot):
 
 **LLM Contextizer v0.1.1**  
 DOI: https://doi.org/10.5281/zenodo.18343438
