@@ -1,0 +1,23 @@
+{
+  "title": "LLM Contextizer",
+  "description": "<p><strong>Zero-dependency CLI for generating LLM-ready repository contexts.</strong></p><p>The tool emits a deterministic ASCII project tree followed by concatenated file contents, optimized for LLM context windows. It includes sensible defaults for noise filtering, truncation of log-like files, and protection against stdout self-inclusion when redirecting output to a file inside the scanned root.</p>",
+  "creators": [
+    {
+      "name": "Flores, Carlos Ulisses",
+      "affiliation": "Codex Hash Ltda. (Brazil)",
+      "orcid": "0000-0002-6034-7765"
+    }
+  ],
+  "version": "v0.1.1",
+  "keywords": [
+    "LLM tooling",
+    "Context window",
+    "CLI",
+    "Prompt engineering",
+    "Developer tools"
+  ],
+  "license": "Apache-2.0",
+  "upload_type": "software",
+  "access_right": "open",
+  "notes": "Zenodo DOI will be minted for an immutable GitHub release tag (e.g., v0.1.1)."
+}

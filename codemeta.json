@@ -1,0 +1,27 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "LLM Contextizer",
+  "description": "Zero-dependency CLI that produces an LLM-optimized text snapshot of a repository (tree + concatenated file contents) with deterministic ordering, ignore rules, truncation, and stdout self-inclusion safety.",
+  "codeRepository": "https://github.com/ulissesflores/llm-contextizer",
+  "license": "https://spdx.org/licenses/Apache-2.0",
+  "version": "0.1.1",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Carlos Ulisses",
+      "familyName": "Flores",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Codex Hash Ltda. (Brazil)"
+      }
+    }
+  ],
+  "keywords": [
+    "LLM tooling",
+    "Context window",
+    "CLI",
+    "Codebase snapshot",
+    "Prompt engineering"
+  ]
+}
