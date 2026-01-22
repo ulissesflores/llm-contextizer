@@ -210,3 +210,5 @@ DOI: https://doi.org/10.5281/zenodo.18343438
 -----------
 
 Licensed under the Apache License 2.0. See LICENSE.
+
+The DOI currently points to the archived v0.1.1 snapshot on Zenodo; later tags may not yet be archived.
