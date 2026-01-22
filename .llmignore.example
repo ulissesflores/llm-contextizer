@@ -1,0 +1,30 @@
+# LLM Contextizer ignore rules (example)
+# Syntax:
+# - dir/      ignores directory (by name)
+# - *.ext     ignores file extension
+# - filename  ignores specific file name
+
+# Common noise
+node_modules/
+dist/
+build/
+coverage/
+__pycache__/
+.venv/
+venv/
+
+# Secrets / env
+.env
+.env.*
+*.pem
+*.key
+
+# Large / noisy artifacts
+*.log
+*.csv
+*.tsv
+*.jsonl
+
+# OS/editor
+.DS_Store
+Thumbs.db

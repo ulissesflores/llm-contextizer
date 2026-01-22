@@ -4,167 +4,203 @@
 **A zero-dependency CLI tool that converts entire codebases into optimized textual contexts for Large Language Models (LLMs).**
 
 <p align="center">
-  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License">
+  <img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="License">
   <img src="https://img.shields.io/badge/python-3.8%2B-blue" alt="Python">
-  <img src="https://img.shields.io/badge/status-stable-green" alt="Status">
   <img src="https://img.shields.io/badge/dependencies-zero-brightgreen" alt="Dependencies">
+  <img src="https://img.shields.io/badge/status-stable-green" alt="Status">
 </p>
 
 ### TL;DR
 
-> **LLM Contextizer** scans a project, builds a readable directory tree, and emits a **single, token-efficient text context** --- ready to paste into ChatGPT, Claude, Gemini, or any LLM.
-
-What problem does it solve?
----------------------------
-
-Large Language Models have **limited context windows**.
-
-**Real-world codebases:**
-
--   Are large
-
--   Contain noise (binaries, caches, lock files)
-
--   Break token budgets quickly
-
-**LLM Contextizer** solves this by:
-
--   Selecting only what matters
-
--   Structuring context for comprehension
-
--   Eliminating setup and dependencies
-
-✨ Key Features
---------------
-
--   **Automatic Context Optimization**\
-    Skips irrelevant directories and artifacts (`.git`, `node_modules`, `venv`, binaries).
-
--   **Smart File Truncation**\
-    Large logs and CSVs are truncated while preserving headers and early rows.
-
--   **Project Tree Visualization**\
-    Emits an ASCII tree so LLMs understand structure *before* reading code.
-
--   **Configurable via `.llmignore`**\
-    Per-project ignore rules using familiar `.gitignore` syntax.
-
--   **Zero Dependencies**\
-    Uses only the Python standard library. No `pip`, no virtual environments.
-
-📦 Installation
----------------
-
-Clone the repository --- that's it.
-
-`git clone https://github.com/ulissesflores/llm-contextizer.git
-cd llm-contextizer`
-
- Set Global Alias
-
-`alias llmctx='python3 /path/to/llm-contextizer/src/contextizer.py'`
-
-
-🛠 Usage
---------
-
-From any project directory:
-
-`llmctx`
-
-Save output to a file:
-
-`llmctx > context.txt`
-
-Target a different directory:
-
-`llmctx ../other-project`
-
-Pipe directly into your clipboard:
-
-`llmctx | pbcopy   # macOS`
-`llmctx | xclip    # Linux`
-
-
-⚙️ Configuration (`.llmignore`)
--------------------------------
-
-Customize exclusions by adding a `.llmignore` file to the project root.
-
-```bash 
-# Directories
-secret_keys/
-legacy_code/
-
-# File types
-*.mp4
-*.log
-
-# Specific files
-sensitive_data.json
-```
-
-🧱 Architecture Decision Record
--------------------------------
-
-### ADR 0001 --- Zero Dependencies Policy
-
-**Status:** Accepted\
-**Date:** 2026-01-20
-
-**Decision:**\
-LLM Contextizer uses **only the Python standard library**.
-
-**Rationale:**
-
--   Maximum portability
-
--   No environment friction
-
--   Lower security and supply-chain risk
-
-This constraint is deliberate and foundational.
-
-🏗 Development Notes
---------------------
-
-Make the script executable:
+`LLM Contextizer` scans a project directory, prints a readable ASCII tree, and then emits a single concatenated text output of file contents — optimized for copy/paste into ChatGPT, Claude, Gemini, or any LLM.
 
 ```bash
-chmod +x src/contextizer.py
+python3 src/contextizer.py /path/to/project > context.txt
 ```
+**Why this exists**
+-------------------
 
-Initialize the repository:
-```bash
-git init
-git add .
-git commit -m "feat: initial release of LLM Contextizer"
-git branch -M main
-```
+LLMs have limited context windows, and real repositories contain:
 
+-   dependency folders (node_modules, venv, etc.)
 
-🤝 Contributing
----------------
+-   build artifacts, caches, binaries
 
-Contributions are welcome and encouraged.
+-   large data/log files that explode token budgets
 
-1.  Fork the repository
+This tool aims to be:
 
-2.  Create a branch from `main`
+-   **portable** (standard library only)
 
-3.  Follow **PEP 8**
+-   **deterministic** (stable ordering)
 
-4.  Add docstrings (Google style)
+-   **safe-by-default** (avoids common footguns)
 
-5.  Test locally
-
-6.  Open a Pull Request 🚀
+-   **LLM-friendly** (tree first, then contents)
 
 * * * * *
 
-📄 License
-----------
+**Key features**
+----------------
 
-This project is licensed under the **MIT License**.\
-See the `LICENSE` file for details.
+-   **Project tree visualization**
+
+    Outputs an ASCII directory tree before the content dump.
+
+-   **Noise filtering by default**
+
+    Skips common junk folders and binary extensions (.git, node_modules, venv, images, archives, etc.).
+
+-   **Truncation for "large/log-like" files**
+
+    Truncates certain file types (e.g., .csv, .log) to the first N lines.
+
+-   **Per-project configuration via** **.llmignore**
+
+    Add a .llmignore at the project root to exclude additional paths.
+
+-   **Output safety: avoids self-inclusion**
+
+    If you redirect stdout to a file inside the scanned root, the tool attempts to detect and exclude that output file.
+
+* * * * *
+
+**Installation**
+----------------
+
+Clone the repo --- no dependencies.
+
+```bash
+git clone https://github.com/ulissesflores/llm-contextizer.git
+cd llm-contextizer
+```
+
+Optional: make it easy to call from anywhere.
+
+```bash
+alias llmctx='python3 /absolute/path/to/llm-contextizer/src/contextizer.py'
+```
+
+
+**Usage**
+---------
+
+Run against the current directory:
+```bash
+python3 src/contextizer.py
+# or (with alias)
+llmctx
+```
+
+Target another directory:
+```bash
+python3 src/contextizer.py ../some-project
+```
+
+Save to a file:
+```bash
+python3 src/contextizer.py . > context.txt
+```
+
+Pipe to clipboard:
+```bash
+python3 src/contextizer.py . | pbcopy   # macOS
+python3 src/contextizer.py . | xclip    # Linux
+```
+
+**Output format**
+-----------------
+
+The output has two parts:
+
+1.  PROJECT STRUCTURE
+
+2.  PROJECT FILE CONTENTS with file separators and relative paths
+
+This consistent structure helps an LLM understand the repository before reading the code.
+
+
+**Configuration**
+-------------------
+
+**.llmignore**
+--------------
+
+Create a .llmignore file at the project root you are scanning.
+
+### **Supported syntax (intentionally minimal)**
+
+-   dir/ ignores a directory (by name)
+
+-   *.ext ignores a file extension
+
+-   filename ignores a specific file name
+
+Example:
+
+```txt
+
+# directories (by name)
+dist/
+build/
+coverage/
+__pycache__/
+
+# secrets
+.env
+.env.*
+*.pem
+*.key
+
+# large/noisy
+*.log
+*.csv
+*.tsv
+*.jsonl
+
+```
+
+Tip: the repository includes a ready-to-copy template: .llmignore.example.
+
+**Architectural Decisions (ADRs)**
+----------------------------------
+
+Core decisions are documented under docs/adr/:
+
+-   ADR 0001: Zero Dependencies Policy
+
+-   ADR 0002: Output Safety (Prevent self-inclusion on stdout redirect)
+
+
+**Versioning**
+--------------
+
+This project follows **Semantic Versioning** and maintains a human-readable changelog in CHANGELOG.md.
+
+-   Patch: bug fixes (0.1.x)
+
+-   Minor: backwards-compatible feature additions (0.x.0)
+
+-   Major: breaking changes (x.0.0)
+
+
+**Contributing**
+----------------
+
+Contributions are welcome.
+
+1.  Fork the repository
+
+2.  Create a branch from main
+
+3.  Keep changes focused (one concern per PR)
+
+4.  Add/update docs when behavior changes
+
+5.  Open a PR
+
+
+**License**
+-----------
+
+Licensed under the Apache License 2.0. See LICENSE.
