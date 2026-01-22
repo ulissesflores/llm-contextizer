@@ -43,3 +43,8 @@ The format is based on *Keep a Changelog*, and this project adheres to *Semantic
 ## [0.1.6] - 2026-01-22
 ### Changed
 - Align CITATION.cff and codemeta.json version fields with the release tag (no runtime changes).
+
+## [0.1.7] - 2026-01-22
+### Changed
+- Added ready-to-copy citation formats (BibTeX and APA) in README for improved scholarly usability (no runtime changes).
+

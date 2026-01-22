@@ -2,7 +2,9 @@ cff-version: 1.2.0
 message: "If you use this software, please cite the Zenodo archival record below."
 title: "LLM Contextizer"
 type: software
-version: 0.1.6
+version: 0.1.7
+doi: 10.5281/zenodo.18343438
+url: "https://doi.org/10.5281/zenodo.18343438"
 date-released: 2026-01-22
 authors:
   - family-names: Flores

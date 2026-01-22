@@ -199,16 +199,33 @@ Contributions are welcome.
 
 5.  Open a PR
 
-## Citation
+## 📜 Citation
 
-If you use this software in academic or research contexts, please cite the Zenodo archival release (immutable snapshot):
+If you use this software in academic or research contexts, please cite the **archival version** hosted on Zenodo.
 
-**LLM Contextizer v0.1.1**  
-DOI: https://doi.org/10.5281/zenodo.18343438
+- **LLM Contextizer (archival release v0.1.1)**
+- **DOI:** https://doi.org/10.5281/zenodo.18343438
+
+### BibTeX
+```bibtex
+@software{flores_2026_llm_contextizer,
+  author       = {Flores, Carlos Ulisses},
+  title        = {LLM Contextizer},
+  year         = {2026},
+  version      = {v0.1.1},
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.18343438},
+  url          = {https://doi.org/10.5281/zenodo.18343438}
+}
+```
+
+### APA
+Flores, C. U. (2026). *LLM Contextizer* (v0.1.1) [Software]. Zenodo. https://doi.org/10.5281/zenodo.18343438
+
+> **Note:** The GitHub repository may evolve beyond this version. For reproducibility and scholarly reference, always cite the Zenodo DOI.
 
 **License**
 -----------
 
 Licensed under the Apache License 2.0. See LICENSE.
 
-The DOI currently points to the archived v0.1.1 snapshot on Zenodo; later tags may not yet be archived.
