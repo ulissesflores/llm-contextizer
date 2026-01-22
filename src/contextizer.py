@@ -7,7 +7,7 @@ containing the file tree and file contents, optimized for Large Language Model
 (LLM) context windows. It respects a custom .llmignore configuration file.
 
 Author: Ulisses Flores
-License: MIT
+License: Apache-2.0
 """
 
 import os
@@ -147,7 +147,7 @@ class ContextGenerator:
         
         if path.is_file():
             # Never ignore the config file itself if it appears in the list
-            if name == '.llmignore':
+            if name in {'.llmignore', '.llmignore.example'}:
                 return False
                 
             if name in self.ignore_files:
