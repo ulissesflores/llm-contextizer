@@ -36,3 +36,10 @@ The format is based on *Keep a Changelog*, and this project adheres to *Semantic
 - Clarified Zenodo DOI as the canonical archival citation target via `preferred-citation`.
 - No runtime, behavioral, or algorithmic changes.
   
+## [0.1.5] - 2026-01-22
+### Changed
+- Normalize changelog and citation metadata (no runtime changes).
+
+## [0.1.6] - 2026-01-22
+### Changed
+- Align CITATION.cff and codemeta.json version fields with the release tag (no runtime changes).
