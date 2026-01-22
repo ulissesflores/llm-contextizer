@@ -199,6 +199,13 @@ Contributions are welcome.
 
 5.  Open a PR
 
+## Citation
+
+If you use this software in academic or research contexts, please cite the
+archival version hosted on Zenodo:
+
+**LLM Contextizer v0.1.1**  
+DOI: https://doi.org/10.5281/zenodo.18343438
 
 **License**
 -----------

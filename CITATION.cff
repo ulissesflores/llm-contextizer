@@ -1,8 +1,8 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it."
+message: "If you use this software, please cite the Zenodo archival record below."
 title: "LLM Contextizer"
 type: software
-version: 0.1.1
+version: 0.1.2
 date-released: 2026-01-22
 authors:
   - family-names: Flores
@@ -12,13 +12,27 @@ authors:
 repository-code: "https://github.com/ulissesflores/llm-contextizer"
 license: Apache-2.0
 abstract: >
-  Zero-dependency CLI that generates an LLM-optimized text context from a codebase
-  by emitting an ASCII directory tree followed by concatenated file contents, with
-  sensible defaults for noise filtering, truncation of log-like files, and output
-  self-inclusion safety when redirecting stdout.
+  Zero-dependency CLI that generates an LLM-optimized textual context from a codebase
+  by emitting a deterministic ASCII directory tree followed by concatenated file
+  contents. The tool applies safe-by-default heuristics for noise filtering,
+  truncation of log-like files, and protection against stdout self-inclusion when
+  redirecting output to a file within the scanned root.
 keywords:
   - LLM tooling
   - Context windows
   - CLI
   - Prompt engineering
   - Codebase summarization
+
+preferred-citation:
+  type: software
+  title: "LLM Contextizer"
+  authors:
+    - family-names: Flores
+      given-names: Carlos Ulisses
+      orcid: "https://orcid.org/0000-0002-6034-7765"
+  version: 0.1.1
+  doi: 10.5281/zenodo.18343438
+  url: "https://doi.org/10.5281/zenodo.18343438"
+  year: 2026
+

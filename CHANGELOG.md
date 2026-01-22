@@ -20,5 +20,10 @@ The format is based on *Keep a Changelog*, and this project adheres to *Semantic
 ### Added
 - Citable metadata files (CITATION.cff, codemeta.json, .zenodo.json) for scholarly citation and archival workflows.
 
+## [0.1.2] - 2026-01-22
+### Added
+- Explicit reference to the Zenodo-minted DOI for the v0.1.1 archival release.
+- Updated citation and metadata files to support formal academic referencing.
+
 ### Changed
-- No runtime behavior changes; this release is documentation/metadata only.
+- No runtime, behavioral, or algorithmic changes.
