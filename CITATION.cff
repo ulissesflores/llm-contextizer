@@ -4,6 +4,7 @@ title: "LLM Contextizer"
 type: software
 version: 0.1.2
 date-released: 2026-01-22
+doi: 10.5281/zenodo.18343438
 authors:
   - family-names: Flores
     given-names: Carlos Ulisses
@@ -34,5 +35,6 @@ preferred-citation:
   version: 0.1.1
   doi: 10.5281/zenodo.18343438
   url: "https://doi.org/10.5281/zenodo.18343438"
+  date-released: 2026-01-22
   year: 2026
 
